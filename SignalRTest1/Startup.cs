@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SignalRTest1.DependencyInjection;
 
 namespace SignalRTest1
 {
@@ -31,8 +32,12 @@ namespace SignalRTest1
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddSignalR();
+
+            // add this last to make sure all other registrations are finished
+            // because of this stupid Autofac workaround
+            services.AddNsb();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,7 +56,7 @@ namespace SignalRTest1
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
+            app.UseSignalR(routes => { routes.MapHub<MessageHub>("/messaging"); });
             app.UseMvc();
         }
     }

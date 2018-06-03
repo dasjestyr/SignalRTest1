@@ -1,0 +1,1 @@
+<?xml version="1.0"?><Stage1Update xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://tempuri.net/SignalRTest1.Handlers"><CallerId>rnBct_BbboBpseAaAUlm7w</CallerId><Result>Did the thing successfully!</Result></Stage1Update>
